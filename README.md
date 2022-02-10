@@ -1,2 +1,2 @@
 # homeassistant
-i386 homeassistant installation files
+i386 homeassistant installation

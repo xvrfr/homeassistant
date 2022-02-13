@@ -192,7 +192,9 @@ sudo dpkg -i os-agent_1.2.2_linux_i386.deb
 
 И выполним приложенный модифицированный скрипт:
 
-chmod 777 supervised-installer.sh
+wget https://github.com/xvrfr/homeassistant/raw/main/supervised-installer.fixed.sh
+
+chmod 777 supervised-installer.fixed.sh
 
 sudo /home/nu100/supervised-installer.fixed.sh
 

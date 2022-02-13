@@ -36,7 +36,7 @@ _Снять все галочки._
 
 **Подключаемся к Интернету**
 
-_Драйвер WiFi, wpasupplicant и wireless-tools в netinst non-free встроены:_
+_Драйвер WiFi, `wpasupplicant` и `wireless-tools` в `netinst non-free` встроены:_
 
 Команда в консоль:
 
@@ -61,7 +61,7 @@ ip link set enp1s0 up
 dhclient enp1s0
 ```
 
-Интернет через локальную сеть готов, но чтобы он подключался автоматически после перезагрузки, необходимо дополнить файл `/etc/network/interfaces`:
+Интернет через локальную сеть готов, но, чтобы он подключался автоматически после перезагрузки, необходимо дополнить файл `/etc/network/interfaces`:
 ```
 echo "" >> /etc/network/interfaces
 echo "auto enp1s0" >> /etc/network/interfaces
@@ -79,7 +79,7 @@ echo "" >> /etc/network/interfaces
 echo "auto wlp2s0" >> /etc/network/interfaces
 echo "iface wlp2s0 inet dhcp" >> /etc/network/interfaces
 ```
-Далее необходимо подправить файл сервиса текствым редактором, например, `nano`:
+Далее необходимо подправить файл сервиса текстовым редактором, например, `nano`:
 ```
 nano /etc/systemd/system/wpa_supplicant.service
 ```
@@ -93,19 +93,19 @@ Restart=always
 
 **Настройка системы**
 
-Необходимо установить sudo и openssh-server:
+Необходимо установить `sudo` и `openssh-server`:
 ```
 apt update
 apt upgrade
 apt install sudo acpi-support vbetool openssh-server 
 ```
 
-Теперь добавим пользователя nu100 в группу sudo:
+Теперь добавим пользователя `nu100` в группу `sudo`:
 ```
 usermod -aG sudo nu100
 ```
 
-_После выполнения можно (и нужно) полноценно работать от имени пользователя nu100 и им же подключаться удаленно в локальной сети через openssh-клиент._
+_После выполнения можно (и нужно) полноценно работать от имени пользователя `nu100` и им же подключаться удаленно в локальной сети через openssh-клиент._
 
 Чтобы названия системных папок было на английском ("Desktop" вместо "Рабочий стол") нужно запустить удаляющую и пересоздающую команду от каждого пользователя:
 ```

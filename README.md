@@ -183,12 +183,18 @@ systemctl stop ModemManager
 
 sudo apt install -y docker.io
 
+sudo apt install wget unzip udisks2
+
+wget https://github.com/home-assistant/os-agent/releases/download/1.2.2/os-agent_1.2.2_linux_i386.deb
+
+sudo dpkg -i os-agent_1.2.2_linux_i386.deb
+
 
 И выполним приложенный модифицированный скрипт:
 
 chmod 777 supervised-installer.sh
 
-sudo /home/nu100/supervised-installer.sh
-
+sudo /home/nu100/supervised-installer.fixed.sh
 
 Запуск займёт минут 20.
+

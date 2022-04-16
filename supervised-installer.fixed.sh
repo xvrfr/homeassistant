@@ -140,7 +140,7 @@ read answer < /dev/tty
 if [[ "$answer" =~ "y" ]] || [[ "$answer" =~ "Y" ]]; then
     info "Replacing /etc/network/interfaces"
     # curl -sL "${URL_INTERFACES}" > "${FILE_INTERFACES}";
-sudo chmod 777 /etc/network/interfaces
+#sudo chmod 777 /etc/network/interfaces
 sudo echo '# This file describes the network interfaces available on your system' > /etc/network/interfaces
 sudo echo '# and how to activate them. For more information, see interfaces(5).' >> /etc/network/interfaces
 sudo echo '' >> /etc/network/interfaces
@@ -268,7 +268,7 @@ docker tag "$HASSIO_DOCKER:$HASSIO_VERSION" "$HASSIO_DOCKER:latest" > /dev/null
 # Install Hass.io Supervisor
 info "Install supervisor startup scripts"
 # curl -sL ${URL_BIN_HASSIO} > "${PREFIX}/sbin/hassio-supervisor"
-sudo chmod 777 /usr/sbin/hassio-supervisor
+#sudo chmod 777 /usr/sbin/hassio-supervisor
 sudo echo '#!/usr/bin/env bash' > /usr/sbin/hassio-supervisor
 sudo echo 'set -e' >> /usr/sbin/hassio-supervisor
 sudo echo '' >> /usr/sbin/hassio-supervisor
@@ -316,7 +316,7 @@ sudo echo '([ "${HASSIO_IMAGE_ID}" = "${HASSIO_CONTAINER_ID}" ] && docker start 
 sudo echo '' >> /usr/sbin/hassio-supervisor
 
 # curl -sL ${URL_SERVICE_HASSIO} > "${SYSCONFDIR}/systemd/system/hassio-supervisor.service"
-sudo chmod 777 /etc/systemd/system/hassio-supervisor.service
+#sudo chmod 777 /etc/systemd/system/hassio-supervisor.service
 sudo echo "[Unit]" > /etc/systemd/system/hassio-supervisor.service
 sudo echo "Description=Hass.io supervisor" >> /etc/systemd/system/hassio-supervisor.service
 sudo echo "Requires=docker.service" >> /etc/systemd/system/hassio-supervisor.service

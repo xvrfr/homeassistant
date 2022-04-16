@@ -1,5 +1,5 @@
 
-# i386 Home Assistant Supervised installation
+# Debian i386 Home Assistant Supervised installation
 
 
 ###### на Atom N270 Netbook MSI Wind U100

@@ -195,9 +195,9 @@ nano /etc/acpi/lid.sh
 </details></h6>
 
 ** **
-### 3. Установка HomeAssistant Supervised
+### 3. Installing HomeAssistant Supervised
 ** **
-По инструкции:
+Originally:
 
 https://sprut.ai/article/ustanovka-home-assistant-na-netbuki-i-starye-pk
 ```
@@ -205,38 +205,40 @@ sudo apt install software-properties-common python3.9 python3.9-dev python3.9-ve
 sudo apt autoremove -y 
 export PATH=$PATH:/usr/sbin
 ```
-**Установка зависимостей:**
+**Getting dependencies:**
 ```
 sudo apt install apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat bash 
 ```
+Disabling ModemManager
 ```
 systemctl disable ModemManager 
 ```
 ```
 systemctl stop ModemManager 
 ```
-**Установка Docker:**
+**Installing Docker:**
 ```
 sudo apt install -y docker.io
 ```
-**Установка HomeAssistant OS Agent:**
+**Installing HomeAssistant OS Agent:**
 ```
 sudo apt install wget unzip udisks2
 wget https://github.com/xvrfr/homeassistant/raw/main/os-agent_1.2.2_linux_i386.deb
 sudo dpkg -i os-agent_1.2.2_linux_i386.deb
 ```
 
-**И, наконец, выполним приложенный модифицированный скрипт:**
+**And finally! Execute modified Supervised installation script:**
 ```
 wget https://github.com/xvrfr/homeassistant/raw/main/supervised-installer.fixed.sh
 chmod 777 supervised-installer.fixed.sh
 sudo /home/nu100/supervised-installer.fixed.sh
 ```
-Если скрипт отработает без ошибок, то в конце будет показан адрес подключения.
+If the script completes without errors, there will be web address to connect to HomeAssistant.
 ** **
-Запуск займёт минут 20.
+**Pay attention that the first start will take about 20 minutes, be patient, please.**
 ** **
-За основу брались запчасти:
+Many thanks to Kanga-who for the initial script.
+The rest parts found:
 ```
 URL_HA="https://github.com/home-assistant/cli/releases/download/4.15.1/ha_i386"    
 URL_BIN_HASSIO="https://raw.githubusercontent.com/remlabm/hassio-installer/master/files/hassio-supervisor"

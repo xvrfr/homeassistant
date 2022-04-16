@@ -2,59 +2,64 @@
 # Debian i386 Home Assistant Supervised installation
 
 
-###### на Atom N270 Netbook MSI Wind U100
+###### on Atom N270 Netbook MSI Wind U100
 
 [![hass_inst_badge](https://img.shields.io/badge/HomeAssistant-Installer-blue.svg)](https://www.home-assistant.io/)
 
 ![Supports i386 Architecture](https://img.shields.io/badge/i386-yes-green.svg)
 ** **
 
-### 1. Установка Debian 11 netinst non-free
+Инструкция на русском языке доступна [ЗДЕСЬ: https://github.com/xvrfr/homeassistant/raw/main/README_RU.md](https://github.com/xvrfr/homeassistant/raw/main/README_RU.md)
+
+---
+
+### 1. Installing Debian 11 netinst non-free
 
 ** **
 
-**Разметка диска:**
+**Disk partitioning:**
 
-_Автоматическая разметка, отдельные разделы для /, /var, /tmp, /home_
+_Automatic, separate partitions for /, /var, /tmp, /home_
 
 
-**Пользователи:**
+**Users (just for reference):**
 
 > root: pj***r3
 
 > nu100: 
 
 
-**Оболочка и системные утилиты:**
+**GUI and system utilities:**
 
-_Снять все галочки._
+_Uncheck everything._
 
-**Дожидаемся окончания установки, перезагрузка.**
-
-** **
-
-### 2. Первый консольный вход (под root)
+**Waiting for installation process to complete, reboot system.**
 
 ** **
 
-**Подключаемся к Интернету**
+### 2. First console login (as root)
 
-_Драйвер WiFi, `wpasupplicant` и `wireless-tools` в `netinst non-free` встроены:_
+** **
 
-Команда в консоль:
+**Connecting to the Internet**
+
+_WiFi driver, `wpasupplicant` and `wireless-tools` have already been implemented into `netinst non-free`:_
+
+Shell command:
 
 ```Shell
 ip a
 ```
 
-Выяснили, что есть 3 интерфейса:
+So, now we know that there were 3 interfaces found in our system:
 ```
-lo     - виртуальный loopback
-enp1s0 - проводная сетевая, down
-wlp2s0 - беспроводная сетевая, down
+lo     - virual loopback
+enp1s0 - cable LAN, down
+wlp2s0 - wireless, down
 ```
 
-Сетевые отключены, подключаемся через провод, значит проводной интерфейс надо включить:
+Network interfaces are down, and as we will connect via cable LAN, we should enable it first:
+
 ```
 ip link set enp1s0 up
 ```

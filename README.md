@@ -64,34 +64,34 @@ Network interfaces are down, and as we will connect via cable LAN, we should ena
 ip link set enp1s0 up
 ```
 
-После включения сетевой нужно запустить DHCP-клиента:
+After enabling LAN we have to start DHCP-client:
 ```
 dhclient enp1s0
 ```
 
-Интернет через локальную сеть готов, но, чтобы он подключался автоматически после перезагрузки, необходимо дополнить файл `/etc/network/interfaces`:
+Internet via LAN is ready to go, but to have the connection persistent after reboots we need to append to `/etc/network/interfaces`:
 ```
 echo "" >> /etc/network/interfaces
 echo "auto enp1s0" >> /etc/network/interfaces
 echo "iface enp1s0 inet dhcp" >> /etc/network/interfaces
 ```
-Настройка Интернета через WiFi не намного сложнее:
+Setting up Internet via WiFi is not as complicated in fact:
 ```
 wpa_passphrase "YOUR_SSID" password > /etc/wpa_supplicant.conf
 cp /lib/systemd/system/wpa_supplicant.service /etc/systemd/system/
 systemctl enable wpa_supplicant.service
 ```
-И дополнить файл `/etc/network/interfaces`:
+And append `/etc/network/interfaces` for persistence as we did it for LAN:
 ```
 echo "" >> /etc/network/interfaces
 echo "auto wlp2s0" >> /etc/network/interfaces
 echo "iface wlp2s0 inet dhcp" >> /etc/network/interfaces
 ```
-Далее необходимо подправить файл сервиса текстовым редактором, например, `nano`:
+Next, we are to edit wireless service file with any file editor, e.g. `nano`:
 ```
 nano /etc/systemd/system/wpa_supplicant.service
 ```
-И привести строки к такому виду:
+And make its part look like this:
 ```
 ExecStart=/sbin/wpa_supplicant -u -s -c /etc/wpa_supplicant.conf -i wlp2s0
 Restart=always
@@ -99,16 +99,16 @@ Restart=always
 #Alias=dbus-fi.w1.wpa_supplicant1.service
 ```
 
-**Настройка системы**
+**Advanced system setup**
 
-Необходимо установить `sudo` и `openssh-server`:
+We need to install `sudo` and `openssh-server`:
 ```
 apt update
 apt upgrade
 apt install sudo acpi-support vbetool openssh-server 
 ```
 
-Теперь добавим пользователя `nu100` в группу `sudo`:
+Now adding user `nu100` we created during installation to `sudo` group:
 ```
 usermod -aG sudo nu100
 ```

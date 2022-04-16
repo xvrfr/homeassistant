@@ -4,6 +4,9 @@
 
 ###### Atom N270 Netbook MSI Wind U100
 
+[![hass_inst_badge](https://img.shields.io/badge/HomeAssistant-Installer-blue.svg)](https://www.home-assistant.io/)
+
+![Supports i386 Architecture](https://img.shields.io/badge/i386-yes-green.svg)
 ** **
 
 ### 1. Установка Debian 11 netinst non-free
@@ -113,8 +116,15 @@ LC_ALL=C xdg-user-dirs-update --force
 ```
 _Однако эта команда должна выполняться после установки окружения (Gnome, KDE, Xfce и др.), чего мы в этой инструкции не делали._
 
+---
 
-**Чтобы ноутбук не засыпал при закрытии крышки**
+**🌜 Чтобы ноутбук не засыпал при закрытии крышки**
+```
+curl -sL "https://github.com/xvrfr/homeassistant/raw/main/files/system/logind.conf" > /etc/systemd/logind.conf
+```
+<h6><details><summary>Альтернативный способ установки файла с помощью оператора <code>echo</code>
+</summary>
+
 ```
 echo "# /etc/systemd/logind.conf" > /etc/systemd/logind.conf
 echo "[Login]" >> /etc/systemd/logind.conf
@@ -122,12 +132,32 @@ echo "HandleLidSwitch=ignore" >> /etc/systemd/logind.conf
 echo "HandleLidSwitchDocked=ignore" >> /etc/systemd/logind.conf
 echo "LidSwitchIgnoreInhibited=no" >> /etc/systemd/logind.conf
 ```
+</details></h6>
 
-**Чтобы ноутбук гасил подсветку при закрытии крышки**
+---
+
+**🔅 Чтобы ноутбук гасил подсветку при закрытии крышки**
+```
+curl -sL "https://github.com/xvrfr/homeassistant/raw/main/files/system/lid-button" > /etc/acpi/events/lid-button
+```
+
+Далее необходимо выполнить:
+
+```
+touch /etc/acpi/lid.sh
+chmod +x /etc/acpi/lid.sh
+```
+```
+curl -sL "https://github.com/xvrfr/homeassistant/raw/main/files/system/lid.sh" > /etc/acpi/lid.sh
+```
+<h6><details><summary>Альтернативный способ установки файлов с помощью оператора <code>echo</code>
+</summary>
+
 ```
 echo "event=button/lid.*" > /etc/acpi/events/lid-button
 echo "action=/etc/acpi/lid.sh" >> /etc/acpi/events/lid-button
-
+```
+```
 touch /etc/acpi/lid.sh
 chmod +x /etc/acpi/lid.sh
 ```
@@ -151,6 +181,8 @@ echo "fi" >> /etc/acpi/lid.sh
 ```
 nano /etc/acpi/lid.sh
 ```
+</details></h6>
+
 ** **
 ### 3. Установка HomeAssistant Supervised
 ** **

@@ -9,7 +9,7 @@
 ![Supports i386 Architecture](https://img.shields.io/badge/i386-yes-green.svg)
 ** **
 
-Инструкция на русском языке доступна [ЗДЕСЬ: https://github.com/xvrfr/homeassistant/raw/main/README_RU.md](https://github.com/xvrfr/homeassistant/raw/main/README_RU.md)
+Инструкция на русском языке доступна [ЗДЕСЬ: https://github.com/xvrfr/homeassistant/blob/main/README_RU.md](https://github.com/xvrfr/homeassistant/blob/main/README_RU.md)
 
 ---
 

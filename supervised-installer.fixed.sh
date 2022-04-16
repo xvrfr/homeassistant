@@ -33,12 +33,12 @@ FILE_INTERFACES="/etc/network/interfaces"
 FILE_NM_CONF="/etc/NetworkManager/NetworkManager.conf"
 FILE_NM_CONNECTION="/etc/NetworkManager/system-connections/default"
 
-URL_RAW_BASE="https://raw.githubusercontent.com/home-assistant/supervised-installer/master/files"
+URL_RAW_BASE="https://github.com/xvrfr/homeassistant/raw/main/files/hassio"
 URL_VERSION="https://version.home-assistant.io/stable.json"
 URL_BIN_APPARMOR="${URL_RAW_BASE}/hassio-apparmor"
 URL_BIN_HASSIO="${URL_RAW_BASE}/hassio-supervisor"
 URL_DOCKER_DAEMON="${URL_RAW_BASE}/docker_daemon.json"
-URL_HA="https://github.com/xvrfr/homeassistant/raw/main/ha_i386"
+URL_HA="https://github.com/xvrfr/homeassistant/raw/main/files/hassio/ha_i386"
 URL_INTERFACES="${URL_RAW_BASE}/interfaces"
 URL_NM_CONF="${URL_RAW_BASE}/NetworkManager.conf"
 URL_NM_CONNECTION="${URL_RAW_BASE}/system-connection-default"
@@ -71,12 +71,12 @@ fi
 if [ ! -f "$FILE_DOCKER_CONF" ]; then
   # Write default configuration
   info "Creating default docker daemon configuration $FILE_DOCKER_CONF"
-#  curl -sL ${URL_DOCKER_DAEMON} > "${FILE_DOCKER_CONF}"
-sudo echo "{" > /etc/docker/daemon.json
-sudo echo "    \"log-driver\":   \"journald\"," >> /etc/docker/daemon.json
-sudo echo "    \"log-level\":       \"error\"," >> /etc/docker/daemon.json
-sudo echo "    \"storage-driver\":   \"overlay2\"" >> /etc/docker/daemon.json
-sudo echo "}" >> /etc/docker/daemon.json
+  curl -sL ${URL_DOCKER_DAEMON} > "${FILE_DOCKER_CONF}"
+#sudo echo "{" > /etc/docker/daemon.json
+#sudo echo "    \"log-driver\":   \"journald\"," >> /etc/docker/daemon.json
+#sudo echo "    \"log-level\":       \"error\"," >> /etc/docker/daemon.json
+#sudo echo "    \"storage-driver\":   \"overlay2\"" >> /etc/docker/daemon.json
+#sudo echo "}" >> /etc/docker/daemon.json
   # Restart Docker service
   info "Restarting docker service"
   systemctl restart "$SERVICE_DOCKER"

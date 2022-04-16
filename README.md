@@ -108,26 +108,31 @@ apt upgrade
 apt install sudo acpi-support vbetool openssh-server 
 ```
 
-Now adding user `nu100` we created during installation to `sudo` group:
+Adding user `nu100` we created during installation to `sudo` group:
 ```
 usermod -aG sudo nu100
 ```
 
-_После выполнения можно (и нужно) полноценно работать от имени пользователя `nu100` и им же подключаться удаленно в локальной сети через openssh-клиент._
-
-Чтобы названия системных папок было на английском ("Desktop" вместо "Рабочий стол") нужно запустить удаляющую и пересоздающую команду от каждого пользователя:
-```
-LC_ALL=C xdg-user-dirs-update --force
-```
-_Однако эта команда должна выполняться после установки окружения (Gnome, KDE, Xfce и др.), чего мы в этой инструкции не делали._
+_Great! Now we can (and must) use `nu100` user for system login and in remote connection credentials, e.g. ssh-client._
 
 ---
 
-**🌜 Чтобы ноутбук не засыпал при закрытии крышки**
+**Tweaks**
+
+For user system folders to be named in English ("Desktop" but not "Рабочий стол") we need to execute re-creating by deleting shell command for every user:
+```
+LC_ALL=C xdg-user-dirs-update --force
+```
+_But this command is to be executed only after GUI (Gnome, KDE, Xfce и др.) being installed, something we are not going to do in this manual._
+
+---
+
+**🌜 For our laptop not to go sleep after closing display shell (lid):**
+
 ```
 curl -sL "https://github.com/xvrfr/homeassistant/raw/main/files/system/logind.conf" > /etc/systemd/logind.conf
 ```
-<h6><details><summary>Альтернативный способ установки файла с помощью оператора <code>echo</code>
+<h6><details><summary>Alternative file installation method via <code>echo</code> command
 </summary>
 
 ```
@@ -141,12 +146,13 @@ echo "LidSwitchIgnoreInhibited=no" >> /etc/systemd/logind.conf
 
 ---
 
-**🔅 Чтобы ноутбук гасил подсветку при закрытии крышки**
+**🔅 For our laptop to turn off display LED after closing display shell (lid):**
+
 ```
 curl -sL "https://github.com/xvrfr/homeassistant/raw/main/files/system/lid-button" > /etc/acpi/events/lid-button
 ```
 
-Далее необходимо выполнить:
+Next step:
 
 ```
 touch /etc/acpi/lid.sh
@@ -155,7 +161,7 @@ chmod +x /etc/acpi/lid.sh
 ```
 curl -sL "https://github.com/xvrfr/homeassistant/raw/main/files/system/lid.sh" > /etc/acpi/lid.sh
 ```
-<h6><details><summary>Альтернативный способ установки файлов с помощью оператора <code>echo</code>
+<h6><details><summary>Alternative file installation method via <code>echo</code> command
 </summary>
 
 ```
@@ -182,7 +188,7 @@ echo "if [ $? = 0 ]; then" >> /etc/acpi/lid.sh
 echo "    vbetool dpms on" >> /etc/acpi/lid.sh
 echo "fi" >> /etc/acpi/lid.sh
 ```
-Проверить результат (необязательно) можно командой:
+To check file creation (optional) use command:
 ```
 nano /etc/acpi/lid.sh
 ```

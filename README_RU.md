@@ -97,9 +97,8 @@ Restart=always
 **Настройка системы**
 
 Необходимо установить `sudo` и `openssh-server`:
-```
-apt update
-apt upgrade
+```Shell
+apt update && apt upgrade -y && apt autoremove -y
 apt install sudo acpi-support vbetool openssh-server 
 ```
 
@@ -189,19 +188,19 @@ nano /etc/acpi/lid.sh
 По инструкции:
 
 https://sprut.ai/article/ustanovka-home-assistant-na-netbuki-i-starye-pk
-```
-sudo apt install software-properties-common python3.9 python3.9-dev python3.9-venv python3-pip libffi-dev libssl-dev
+```Shell
+sudo apt install python3.9 python3.9-dev python3.9-venv python3-pip libffi-dev libssl-dev
 sudo apt autoremove -y 
-export PATH=$PATH:/usr/sbin
 ```
+
 **Установка зависимостей:**
-```
-sudo apt install apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat bash 
+```Shell
+export PATH=$PATH:/usr/sbin
+apt update && apt upgrade -y && apt autoremove -y
+sudo apt install software-properties-common apparmor-utils apt-transport-https avahi-daemon ca-certificates curl dbus jq network-manager socat bash wget unzip udisks2
 ```
 ```
 systemctl disable ModemManager 
-```
-```
 systemctl stop ModemManager 
 ```
 **Установка Docker:**
@@ -210,7 +209,6 @@ sudo apt install -y docker.io
 ```
 **Установка HomeAssistant OS Agent:**
 ```
-sudo apt install wget unzip udisks2
 wget https://github.com/xvrfr/homeassistant/raw/main/os-agent_1.2.2_linux_i386.deb
 sudo dpkg -i os-agent_1.2.2_linux_i386.deb
 ```

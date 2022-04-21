@@ -1,8 +1,8 @@
+# Home Assistant Supervised установка на i386
 
-# Debian i386 Home Assistant Supervised installation
+###### для Atom N270 Netbook MSI Wind U100
 
-
-###### на Atom N270 Netbook MSI Wind U100
+[![hassio_badge](https://img.shields.io/badge/home%20assistant-%2341BDF5.svg?&style=for-the-badge&logo=home%20assistant&logoColor=white)](https://www.home-assistant.io/)
 
 [![hass_inst_badge](https://img.shields.io/badge/HomeAssistant-Installer-blue.svg)](https://www.home-assistant.io/)
 

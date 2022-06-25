@@ -334,9 +334,9 @@ curl -sL ${URL_SERVICE_HASSIO} > "${SYSCONFDIR}/systemd/system/hassio-supervisor
 #sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/hassio-supervisor.service
 
 sed -i "s,%%HASSIO_CONFIG%%,${CONFIG},g" "${PREFIX}"/sbin/hassio-supervisor
-sed -i -e "s,%%BINARY_DOCKER%%,${BINARY_DOCKER},g" \
-       -e "s,%%SERVICE_DOCKER%%,${SERVICE_DOCKER},g" \
-       -e "s,%%BINARY_HASSIO%%,${PREFIX}/sbin/hassio-supervisor,g" \
+sed -i -e "s,%%DOCKER_BINARY%%,${BINARY_DOCKER},g" \
+       -e "s,%%DOCKER_SERVICE%%,${SERVICE_DOCKER},g" \
+       -e "s,%%HASSIO_BINARY%%,${PREFIX}/sbin/hassio-supervisor,g" \
        "${SYSCONFDIR}/systemd/system/hassio-supervisor.service"
 
 chmod a+x "${PREFIX}/sbin/hassio-supervisor"
@@ -406,7 +406,7 @@ curl -sL ${URL_SERVICE_APPARMOR} > "${SYSCONFDIR}/systemd/system/hassio-apparmor
 curl -sL ${URL_APPARMOR_PROFILE} > "${DATA_SHARE}/apparmor/hassio-supervisor"
 
 sed -i "s,%%HASSIO_CONFIG%%,${CONFIG},g" "${PREFIX}/sbin/hassio-apparmor"
-sed -i -e "s,%%SERVICE_DOCKER%%,${SERVICE_DOCKER},g" \
+sed -i -e "s,%%DOCKER_SERVICE%%,${SERVICE_DOCKER},g" \
     -e "s,%%HASSIO_APPARMOR_BINARY%%,${PREFIX}/sbin/hassio-apparmor,g" \
     "${SYSCONFDIR}/systemd/system/hassio-apparmor.service"
 
